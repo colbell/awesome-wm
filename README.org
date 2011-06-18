@@ -1,2 +1,2 @@
-This is my configuration for the [[http:http://awesome.naquadah.org/][Awesome Window Manager]].
+This is my configuration for the [[http://awesome.naquadah.org/][Awesome Window Manager]].
 
