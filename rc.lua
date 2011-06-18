@@ -96,7 +96,9 @@ theme_menu()
 
 require('freedesktop.utils')
 require('freedesktop.menu')
-freedesktop.utils.icon_theme = 'gnome' -- look inside /usr/share/icons/, default: nil (don't use icon theme)
+
+-- Look inside /usr/share/icons/, default: nil (don't use icon theme)
+freedesktop.utils.icon_theme = {"/usr/share/icons/NoirCrystal", "gnome"}
 
 myawesomemenu = {
    { "themes", mythememenu },
