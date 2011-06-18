@@ -1,0 +1,13 @@
+---          lunar             ---
+black and orange theme for awesome
+
+Just a simple awesome theme, based on the zenburn theme that is currently in the
+awesome development repos.
+
+---       INSTALLATION        ---
+
+Copy all files into awesome's theme directory, in a new folder called 'lunar'.
+(on Arch, /usr/share/awesome/themes/lunar/)
+
+Then, load the theme.lua file in your rc.lua, and everything should be black and
+orange!

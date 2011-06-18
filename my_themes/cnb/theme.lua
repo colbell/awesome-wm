@@ -1,4 +1,5 @@
 -- ln -s /home/colbell/.config/awesome/my_themes/cnb /usr/share/awesome/themes/cnb
+-- Copy of REDD theme
 -------------------------------
 --  "Zenburn" awesome theme  --
 --    By Adrian C. (anrxc)   --
