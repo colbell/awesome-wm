@@ -109,7 +109,7 @@ mycommons = { }
 
 
 mymainmenu = awful.menu({width = 150,  items = {
-  { "Free Desktop", freedesktop.menu.new()},
+  { "Free Desktop", freedesktop.menu.new(), "/usr/share/icons/NoirCrystal/scalable/places/debian-swirl-logo.png"},
   { "Zenix", zenix.menu.Zenix_menu.Zenix, "/usr/share/awesome/themes/zenix/zenix-menu-icon.gif" },
   { "Terminal", "/usr/bin/sakura", "/usr/share/icons/hicolor/48x48/apps/xfce-terminal.png" },
   { "File Manager", "/usr/bin/pcmanfm", "/usr/share/icons/gnome-dust/32x32/apps/redhat-filemanager.png" },
