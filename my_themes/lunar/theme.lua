@@ -9,11 +9,11 @@
 -- {{{ Main
 theme = {}
 -- theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/lunar/lunar-background.png" }
-theme.wallpaper_cmd = { "feh --bg-tile /usr/share/awesome/themes/lunar/lunar-background.png" }
+ theme.wallpaper_cmd = { "feh --bg-tile /usr/share/awesome/themes/lunar/lunar-background.png" }
 -- }}}
 
 -- {{{ Styles
-theme.font      = "terminus 8"
+theme.font      = "terminus 6"
 
 -- {{{ Colors
 theme.fg_normal = "#FF8C00"

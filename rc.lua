@@ -73,8 +73,8 @@ function theme_load(theme)
   local cfg_path = awful.util.getdir("config")
 
    -- Create a symlink from the given theme to /home/user/.config/awesome/current_theme
-   awful.util.spawn("ln -sfn " .. cfg_path .. "/themes/" .. theme .. " " .. cfg_path .. "/current_theme")
-   --awful.util.spawn(cfg_path .. "/current_theme/conky.sh")
+   -- awful.util.spawn("ln -sfn " .. cfg_path .. "/themes/" .. theme .. " " .. cfg_path .. "/current_theme")
+   -- awful.util.spawn(cfg_path .. "/current_theme/conky.sh")
    awesome.restart()
 end
 
@@ -428,6 +428,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
+    { rule = { class = "Conky" },
+      properties = { tag = tags[1][9] } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
@@ -466,7 +468,7 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 -- }}}
 
 -- Autostart conky
-home = os.getenv("HOME") .. "/.config/awesome/current_theme/conky.sh"
-awful.util.spawn(home)
+-- home = os.getenv("HOME") .. "/.config/awesome/current_theme/conky.sh"
+-- awful.util.spawn(home)
 -- xrandr = "/usr/bin/xrandr -s 1024x768"
 -- awful.util.spawn_with_shell(xrandr)
