@@ -10,11 +10,13 @@ require("beautiful")
 require("naughty")
 
 -- Load Zenix menu entries
-require("zenix.menu")
+-- require("zenix.menu")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init(awful.util.getdir("config") .. "/current_theme/theme.lua")
+-- beautiful.init(awful.util.getdir("config") .. "/current_theme/theme.lua")
+-- beautiful.init(awful.util.getdir("config") .. "/my_themes/lunar/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/lunar/theme.lua")
 
 -- widget library
 require("vicious")
@@ -87,13 +89,13 @@ function theme_menu()
 end
 
 -- Generate your table at startup or restart
-theme_menu()
+-- theme_menu()
 
 require('freedesktop.utils')
 require('freedesktop.menu')
 
 -- Look inside /usr/share/icons/, default: nil (don't use icon theme)
-freedesktop.utils.icon_theme = {"/usr/share/icons/NoirCrystal", "gnome"}
+-- freedesktop.utils.icon_theme = {"/usr/share/icons/NoirCrystal", "gnome"}
 
 myawesomemenu = {
    { "themes", mythememenu },
@@ -106,14 +108,14 @@ mycommons = { }
 
 
 mymainmenu = awful.menu({width = 150,  items = {
-  { "Apps", freedesktop.menu.new(), "/usr/share/icons/NoirCrystal/scalable/places/debian-swirl-logo.png"},
-  { "Zenix", zenix.menu.Zenix_menu.Zenix, "/usr/share/awesome/themes/zenix/zenix-menu-icon.gif" },
-  { "Terminal", "/usr/bin/sakura", "/usr/share/icons/hicolor/48x48/apps/xfce-terminal.png" },
-  { "File Manager", "/usr/bin/pcmanfm", "/usr/share/icons/gnome-dust/32x32/apps/redhat-filemanager.png" },
+  { "Apps", freedesktop.menu.new(), nil }, --"/usr/share/icons/lubuntu/places/22/lubuntu/gnome-main-menu.svg"},
+  -- { "Zenix", zenix.menu.Zenix_menu.Zenix, "/usr/share/awesome/themes/zenix/zenix-menu-icon.gif" },
+  { "Terminal", "/usr/bin/sakura", nil}, --"/usr/share/icons/hicolor/48x48/apps/xfce-terminal.png" },
+  { "File Manager", "/usr/bin/pcmanfm", nil }, --"/usr/share/icons/gnome-dust/32x32/apps/redhat-filemanager.png" },
   { "awesome", myawesomemenu, beautiful.awesome_icon },
-  { "Logout", awesome.quit,"/usr/local/share/icons/bullet_black.png" },
-  { "Shutdown", "sudo shutdown -h now","/usr/local/share/icons/shutdown.png" },
-  { "Reboot", "sudo reboot","/usr/local/share/icons/reboot.png" },
+  { "Logout", awesome.quit, nil }, --"/usr/local/share/icons/bullet_black.png" },
+  { "Shutdown", "sudo shutdown -h now", nil }, --"/usr/local/share/icons/shutdown.png" },
+  { "Reboot", "sudo reboot",nil }, --"/usr/local/share/icons/reboot.png" },
 }})
 
 mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
