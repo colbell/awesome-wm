@@ -9,13 +9,8 @@ require("beautiful")
 -- Notification library
 require("naughty")
 
--- Load Zenix menu entries
--- require("zenix.menu")
-
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
--- beautiful.init(awful.util.getdir("config") .. "/current_theme/theme.lua")
--- beautiful.init(awful.util.getdir("config") .. "/my_themes/lunar/theme.lua")
 beautiful.init(awful.util.getdir("config") .. "/themes/lunar/theme.lua")
 
 -- widget library
@@ -64,41 +59,14 @@ end
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 
-mythememenu = {}
-
-function theme_load(theme)
-  local cfg_path = awful.util.getdir("config")
-
-   -- Create a symlink from the given theme to /home/user/.config/awesome/current_theme
-   -- awful.util.spawn("ln -sfn " .. cfg_path .. "/themes/" .. theme .. " " .. cfg_path .. "/current_theme")
-   -- awful.util.spawn(cfg_path .. "/current_theme/conky.sh")
-   awesome.restart()
-end
-
-function theme_menu()
-   -- List your theme files and feed the menu table
-   local cmd = "ls -1 " .. awful.util.getdir("config") .. "/themes/"
-   local f = io.popen(cmd)
-
-   for l in f:lines() do
-     local item = { l, function () theme_load(l) end }
-     table.insert(mythememenu, item)
-   end
-
-   f:close()
-end
-
--- Generate your table at startup or restart
--- theme_menu()
-
 require('freedesktop.utils')
 require('freedesktop.menu')
 
 -- Look inside /usr/share/icons/, default: nil (don't use icon theme)
--- freedesktop.utils.icon_theme = {"/usr/share/icons/NoirCrystal", "gnome"}
+freedesktop.utils.icon_theme = {"/usr/share/icons/NoirCrystal", "gnome"}
+--freedesktop.utils.icon_theme = {"gnome"}
 
 myawesomemenu = {
-   { "themes", mythememenu },
    { "manual", "sakura -e 'man awesome'" },
    { "edit config", "gedit rc.lua" },
    { "restart", awesome.restart },
@@ -108,14 +76,12 @@ mycommons = { }
 
 
 mymainmenu = awful.menu({width = 150,  items = {
-  { "Apps", freedesktop.menu.new(), nil }, --"/usr/share/icons/lubuntu/places/22/lubuntu/gnome-main-menu.svg"},
-  -- { "Zenix", zenix.menu.Zenix_menu.Zenix, "/usr/share/awesome/themes/zenix/zenix-menu-icon.gif" },
-  { "Terminal", "/usr/bin/sakura", nil}, --"/usr/share/icons/hicolor/48x48/apps/xfce-terminal.png" },
-  { "File Manager", "/usr/bin/pcmanfm", nil }, --"/usr/share/icons/gnome-dust/32x32/apps/redhat-filemanager.png" },
+  { "Apps", freedesktop.menu.new(), "/usr/share/icons/gnome/16x16/places/distributor-logo.png"},
+  { "File Manager", "/usr/bin/pcmanfm", "/usr/share/icons/gnome/16x16/apps/file-manager.png" },
   { "awesome", myawesomemenu, beautiful.awesome_icon },
-  { "Logout", awesome.quit, nil }, --"/usr/local/share/icons/bullet_black.png" },
-  { "Shutdown", "sudo shutdown -h now", nil }, --"/usr/local/share/icons/shutdown.png" },
-  { "Reboot", "sudo reboot",nil }, --"/usr/local/share/icons/reboot.png" },
+  { "Logout", awesome.quit, nil },
+  { "Shutdown", "sudo shutdown -h now", "/usr/share/icons/gnome/16x16/actions/stop.png" },
+  { "Reboot", "sudo reboot",nil },
 }})
 
 mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
@@ -473,6 +439,25 @@ end)
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- FIXME: doesn't check if executable
+function start_if_executable(path, args)
+  local f = io.open(path)
+  if f then
+    f:close()
+    if args then
+      awful.util.spawn(path .. args)
+    else
+      awful.util.spawn(path)
+    end
+  end
+end
+
+-- Autostarts
+start_if_executable("/usr/bin/nm-applet", nil)
+start_if_executable("/usr/bin/xfce4-power-manager, nil")
+start_if_executable("/usr/bin/conky", "--pause=2")
+
 
 -- Autostart conky
 -- home = os.getenv("HOME") .. "/.config/awesome/current_theme/conky.sh"
