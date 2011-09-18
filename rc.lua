@@ -440,25 +440,29 @@ client.add_signal("focus", function(c) c.border_color = beautiful.border_focus e
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
--- FIXME: doesn't check if executable
-function start_if_executable(path, args)
-  local f = io.open(path)
-  if f then
-    f:close()
-    if args then
-      awful.util.spawn(path .. args)
-    else
-      awful.util.spawn(path)
+function run_once(prg,arg_string,pname,screen)
+    if not prg then
+        do return nil end
     end
-  end
+
+    if not pname then
+       pname = prg
+    end
+
+    if not arg_string then 
+        awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. ")",screen)
+    else
+        awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. " " .. arg_string .. ")",screen)
+    end
 end
 
 -- Autostarts
-start_if_executable("/usr/bin/nm-applet", nil)
-start_if_executable("/usr/bin/xfce4-power-manager, nil")
-start_if_executable("/usr/bin/conky", "--pause=2")
+--start_if_executable(os.getenv("HOME") .. "/.xinitrc")
+run_once("nm-applet")
+run_once("xfce4-power-manager")
 
-
+awesome.add_signal("load-conky", function() run_once("conky", "--pause=5") end)
+awesome.emit_signal("load-conky")
 -- Autostart conky
 -- home = os.getenv("HOME") .. "/.config/awesome/current_theme/conky.sh"
 -- awful.util.spawn(home)
