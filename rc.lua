@@ -61,15 +61,15 @@ end
 
 require('freedesktop.utils')
 require('freedesktop.menu')
+require('debian.menu')
 
 -- Look inside /usr/share/icons/, default: nil (don't use icon theme)
 freedesktop.utils.icon_theme = {"/usr/share/icons/NoirCrystal", "gnome"}
---freedesktop.utils.icon_theme = {"gnome"}
 
 myawesomemenu = {
-   { "manual", "sakura -e 'man awesome'" },
-   { "edit config", "gedit rc.lua" },
-   { "restart", awesome.restart },
+   { "manual", "lxterminal -e 'man awesome'", freedesktop.utils.lookup_icon({ icon = 'help' }) },
+   { "edit config", "gedit rc.lua", freedesktop.utils.lookup_icon({ icon = 'package_settings' })},
+   { "restart", awesome.restart, freedesktop.utils.lookup_icon({ icon = 'gtk-refresh' }) },
 }
 
 mycommons = { }
@@ -77,6 +77,7 @@ mycommons = { }
 
 mymainmenu = awful.menu({width = 150,  items = {
   { "Apps", freedesktop.menu.new(), "/usr/share/icons/gnome/16x16/places/distributor-logo.png"},
+  { "Debian", debian.menu.Debian_menu.Debian, freedesktop.utils.lookup_icon({ icon = 'debian-logo' })},
   { "File Manager", "/usr/bin/pcmanfm", "/usr/share/icons/gnome/16x16/apps/file-manager.png" },
   { "awesome", myawesomemenu, beautiful.awesome_icon },
   { "Logout", awesome.quit, nil },
@@ -460,9 +461,8 @@ end
 --start_if_executable(os.getenv("HOME") .. "/.xinitrc")
 run_once("nm-applet")
 run_once("xfce4-power-manager")
+--run_once("conky", "-d  --pause=4")
 
-awesome.add_signal("load-conky", function() run_once("conky", "--pause=5") end)
-awesome.emit_signal("load-conky")
 -- Autostart conky
 -- home = os.getenv("HOME") .. "/.config/awesome/current_theme/conky.sh"
 -- awful.util.spawn(home)
