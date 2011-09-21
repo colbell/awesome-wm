@@ -81,8 +81,6 @@ mymainmenu = awful.menu({width = 150,  items = {
   { "File Manager", "/usr/bin/pcmanfm", "/usr/share/icons/gnome/16x16/apps/file-manager.png" },
   { "awesome", myawesomemenu, beautiful.awesome_icon },
   { "Logout", awesome.quit, nil },
-  { "Shutdown", "sudo shutdown -h now", "/usr/share/icons/gnome/16x16/actions/stop.png" },
-  { "Reboot", "sudo reboot",nil },
 }})
 
 mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
@@ -461,6 +459,10 @@ end
 --start_if_executable(os.getenv("HOME") .. "/.xinitrc")
 run_once("nm-applet")
 run_once("xfce4-power-manager")
+
+os.execute("(sleep 2 && conky -d)&")
+
+--
 --run_once("conky", "-d  --pause=4")
 
 -- Autostart conky
