@@ -14,7 +14,7 @@ require("naughty")
 beautiful.init(awful.util.getdir("config") .. "/themes/lunar/theme.lua")
 
 -- widget library
-require("vicious")
+--require("vicious")
 
 -- scratchpads.
 require("scratch")
@@ -296,8 +296,8 @@ globalkeys = awful.util.table.join(
                   --  Use the KDE Help Center for manual page display
                   --  function (page) awful.util.spawn("khelpcenter man:" .. page, false) end,
                   --  Use the terminal emulator for manual page display
-                  -- function (page) awful.util.spawn("xterm -e man '" .. page .. "'", false) end,
-                  function (page) awful.util.spawn("sakura -e 'man " .. page .. "'", false) end,
+                  function (page) awful.util.spawn("xterm -e man '" .. page .. "'", false) end,
+                  -- function (page) awful.util.spawn("sakura -e 'man " .. page .. "'", false) end,
                   function(cmd, cur_pos, ncomp)
                      local pages = {}
                      local m = 'IFS=: && find $(manpath||echo "$MANPATH") -type f -printf "%f\n"| cut -d. -f1'
@@ -458,9 +458,9 @@ end
 -- Autostarts
 --start_if_executable(os.getenv("HOME") .. "/.xinitrc")
 run_once("nm-applet")
-run_once("xfce4-power-manager")
+--run_once("xfce4-power-manager")
 
-os.execute("(sleep 2 && conky -d)&")
+--os.execute("(sleep 2 && conky -d)&")
 
 --
 --run_once("conky", "-d  --pause=4")
